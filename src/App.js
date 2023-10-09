@@ -1,24 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import Navigation from './components/Navigation';
+import AllGalleries from './components/pages/Galleries/AllGalleries';
+import LoginPage from './components/pages/Auth/LoginPage';
+import RegisterPage from './components/pages/Auth/RegisterPage';
+import MyGallery from './components/pages/Galleries/MyGalleries';
+import CreateGallery from './components/pages/Galleries/CreateGallery';
+import { Route, Routes } from 'react-router-dom';
+import UserProvider from './providers/UserProvider';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <UserProvider>
+    <Navigation />
+    <Routes>
+      
+      <Route index path="/" element={<AllGalleries />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route index path="/my-galleries" element={<MyGallery />} />
+      <Route index path="/create-gallery" element={<CreateGallery />} />
+    </Routes>
+
+    </UserProvider>
+
+  </>
+      
+      
   );
 }
 
